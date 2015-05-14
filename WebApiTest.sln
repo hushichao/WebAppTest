@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComClassLibrary", "ComClassLibrary\ComClassLibrary.csproj", "{01C9A868-FC2A-40C7-BA40-F0F114BFBAE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTest", "WebApiTest\WebApiTest.csproj", "{7C7E7F93-0287-457A-A2AE-3D735320DFE0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01C9A868-FC2A-40C7-BA40-F0F114BFBAE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01C9A868-FC2A-40C7-BA40-F0F114BFBAE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01C9A868-FC2A-40C7-BA40-F0F114BFBAE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01C9A868-FC2A-40C7-BA40-F0F114BFBAE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C7E7F93-0287-457A-A2AE-3D735320DFE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C7E7F93-0287-457A-A2AE-3D735320DFE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C7E7F93-0287-457A-A2AE-3D735320DFE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C7E7F93-0287-457A-A2AE-3D735320DFE0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35;packages\Unity.Interception.2.1.505.2\lib\NET35
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,1904 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Gurux.Communication</name>
+    </assembly>
+    <members>
+        <member name="T:Gurux.Communication.GXChecksumEventArgs">
+            <summary>
+            An argument class for CountChecksum.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.GXChecksumEventArgs.#ctor(Gurux.Communication.GXPacket)">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXChecksumEventArgs.Checksum">
+            <summary>
+            Counted checksum
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXChecksumEventArgs.Packet">
+            <summary>
+            Packet where checksum is counted.
+            </summary>
+        </member>
+        <member name="T:Gurux.Communication.GXReceivedPacketEventArgs">
+            <summary>
+            An argument class for received packet.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.GXReceivedPacketEventArgs.#ctor(Gurux.Communication.GXPacket,System.Boolean)">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXReceivedPacketEventArgs.Packet">
+            <summary>
+            The received packet.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXReceivedPacketEventArgs.Answer">
+            <summary>
+            Is the packet answer to a request or a notification (event) from the device.
+            </summary>
+        </member>
+        <member name="T:Gurux.Communication.GXNotifyEventArgs">
+            <summary>
+            An argument class for received packet.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.GXNotifyEventArgs.#ctor(Gurux.Communication.GXPacket,System.String)">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXNotifyEventArgs.Packet">
+            <summary>
+            The received packet.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXNotifyEventArgs.Client">
+            <summary>
+            Client that is receiving data.
+            </summary>
+            <remarks>
+            If received event is handled in event handler set this to null.
+            </remarks>
+        </member>
+        <member name="P:Gurux.Communication.GXNotifyEventArgs.SenderInfo">
+            <summary>
+            Media depend sender information.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXNotifyEventArgs.Handled">
+            <summary>
+            Is the packet handled.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXNotifyEventArgs.Reply">
+            <summary>
+            Reply packet.
+            </summary>
+            <remarks>
+            Set reply packet is server needs example ACK.
+            </remarks>
+        </member>
+        <member name="T:Gurux.Communication.ParseStatus">
+            <summary>
+            Status of the received data.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ParseStatus.Complete">
+            <summary>
+            Accept received packet.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ParseStatus.Incomplete">
+            <summary>
+            Packet is not complete.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ParseStatus.CorruptData">
+            <summary>
+            Reset received data buffer. 
+            </summary>
+        </member>
+        <member name="T:Gurux.Communication.GXVerifyPacketEventArgs">
+            <summary>
+            Argument class for VerifyPacket
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.GXVerifyPacketEventArgs.#ctor(System.Byte[],Gurux.Communication.GXPacket)">
+            <summary>
+            Default constructor
+            </summary>        
+        </member>
+        <member name="P:Gurux.Communication.GXVerifyPacketEventArgs.Received">
+            <summary>
+            The received packet.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXVerifyPacketEventArgs.Data">
+            <summary>
+            The received data.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXVerifyPacketEventArgs.State">
+            <summary>
+            Status of the received data.
+            </summary>
+        </member>
+        <member name="T:Gurux.Communication.GXReplyPacketEventArgs">
+            <summary>
+            Argument class for packet handling.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.GXReplyPacketEventArgs.#ctor(Gurux.Communication.GXPacket,Gurux.Communication.GXPacket)">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXReplyPacketEventArgs.Send">
+            <summary>
+            Sent packet
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXReplyPacketEventArgs.Received">
+            <summary>
+            Received packet
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXReplyPacketEventArgs.Accept">
+            <summary>
+            Is the packet accepted.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXReplyPacketEventArgs.Description">
+            <summary>
+            Description why packet is not accepted.
+            </summary>
+        </member>
+        <member name="T:Gurux.Communication.GXParsePacketEventArgs">
+            <summary>
+            Argument class for packet parsing.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.GXParsePacketEventArgs.#ctor(System.Byte[],Gurux.Communication.GXPacket)">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXParsePacketEventArgs.Data">
+            <summary>
+            Received data where packet is parsed.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXParsePacketEventArgs.Packet">
+            <summary>
+            Packet where data is parsed.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXParsePacketEventArgs.PacketSize">
+            <summary>
+            Amount of bytes that the packet takes from the byte flow.
+            </summary>
+            <remarks>
+            If packet is not ready yet, set to Zero.
+            </remarks>
+        </member>
+        <member name="T:Gurux.Communication.GXReceiveDataEventArgs">
+            <summary>
+            Argument class for received data.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.GXReceiveDataEventArgs.#ctor(System.Byte[],System.String)">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXReceiveDataEventArgs.Data">
+            <summary>
+            Received data.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXReceiveDataEventArgs.SenderInfo">
+            <summary>
+            Sender information.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXReceiveDataEventArgs.Accept">
+            <summary>
+            Is received data accepted.
+            </summary>
+            <remarks>
+            Set to false if received data is skipped.
+            </remarks>
+        </member>
+        <member name="T:Gurux.Communication.CountChecksumEventHandler">
+            <summary>
+            GXPacket component calls this method when the checksum is counted.
+            </summary>
+            <param name="sender">Packet which checksum is counted.</param>
+            <param name="e">Checksum parameters.</param>
+            <remarks>
+            If own checksum count is used, the SetChecksumParameters ChkType public must be set to Own. 
+            If checksum type is something different than Own, this method is not called.<br/>
+            This event is called first time with empty data to resolve the size of used crc.
+            </remarks>
+            <seealso cref="T:Gurux.Communication.GXPacket">GXPacket</seealso> 
+        </member>
+        <member name="T:Gurux.Communication.IsReplyPacketEventHandler">
+            <summary>
+            GXClient component calls this method when it checks if the received packet is a reply packet for the send packet.
+            </summary>
+            <remarks>
+            GXClient calls this method when it receives a new packet. This method checks
+            if the received packet is the response to the sent packet. The response depends on the used protocol.
+            GXClient goes through all sent packets one by one until isReplyPacket is set to True.
+            If this method is not implemented GXCom assumes that received packet is a reply packet for the first sent packet.
+            </remarks>
+            <param name="sender">The source of the event.</param>
+            <param name="e">Reply packet parameters.</param>
+        </member>
+        <member name="T:Gurux.Communication.AcceptNotifyEventHandler">
+            <summary>
+            GXClient component uses this method to check if received notify message is accepted.
+            </summary>
+            <remarks>
+            When event message is received this method is used to check is received packet accepted.
+            </remarks>
+            <param name="sender">The source of the event.</param>
+            <param name="e">Reply packet parameters.</param>
+        </member>
+        <member name="T:Gurux.Communication.ReceivedEventHandler">
+            <summary>
+            GXClient component sends all asynchronous and notification packets using this method.
+            </summary>
+            <remarks>
+            This method handles the received asynchronous and notification packets.
+            If all communication is done using synchronous communication, this method is not necessary to implement.
+            </remarks>    
+            <param name="sender">The source of the event.</param>
+            <param name="e">Argument class</param>
+        </member>
+        <member name="T:Gurux.Communication.ParsePacketFromDataEventHandler">
+            <summary>
+            GXClient component calls this method, if the client application uses its own parsing method, instead of the one of GXCom.
+            </summary>
+            <remarks>
+            This method is called only, if ParseReceivedPacket is set True.
+            </remarks>    
+            <param name="sender">The source of the event.</param>
+            <seealso cref="T:Gurux.Communication.GXPacket">GXPacket</seealso> 
+            <param name="e">Argument class</param>
+        </member>
+        <member name="T:Gurux.Communication.ReceiveDataEventHandler">
+            <summary>
+            Checks if the received data is from the correct device. 
+            If ReceiveData is set to False, received data is ignored.
+            </summary>
+            <remarks>
+            Use this method to identify the correct data. 
+            </remarks>   
+            <param name="sender">The source of the event.</param>
+            <param name="e">Received data.</param>
+        </member>
+        <member name="T:Gurux.Communication.DirtyEventHandler">
+            <summary>
+            Called, when the client settings or the media settings are modified.
+            </summary>	
+            <param name="sender">The source of the event.</param>
+            <param name="component">Object, whose state has changed.</param>
+            <param name="isDirty">Determines the new dirty state.</param>
+        </member>
+        <member name="T:Gurux.Communication.BeforeSendEventHandler">
+            <summary>
+            Called before packet is send.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="packet"></param>
+        </member>
+        <member name="T:Gurux.Communication.LoadEventHandler">
+            <summary>
+             Initialize settings.
+            </summary>
+             <param name="sender">The source of the event.</param>
+        </member>
+        <member name="T:Gurux.Communication.UnloadEventHandler">
+            <summary>
+            Make cleanup
+            </summary>
+            <param name="sender"></param>
+        </member>
+        <member name="T:Gurux.Communication.VerifyPacketEventHandler">
+            <summary>
+            Check that received packet is OK.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Gurux.Communication.FindClient">
+            <summary>
+            Find client by received data.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Gurux.Communication.GXChecksum">
+            <summary>
+            Checksum parameters.
+            </summary>
+            <remarks>
+            Parameters CRCSize, CRCPolynomial, CRCInitialValue, CRCFinalXOR, CRCReverseData and/or CRCReflection 
+            can be used only, when checksum type is Custom (GX_CHK_CUSTOM).
+            </remarks>
+            <seealso href="GXClient.SetChecksumParameters">GXClient.SetChecksumParameters</seealso>
+            <seealso href="GXPacketCountChecksum">CountChecksum</seealso>
+        </member>
+        <member name="M:Gurux.Communication.GXChecksum.#ctor(System.Object)">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.GXChecksum.Equals(System.Object)">
+            <summary>
+            A check equality using property values rather than reference.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.GXChecksum.GetHashCode">
+            <summary>
+            Direct call to object.GetHashCode. Required by Equals(object) override.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.GXChecksum.Copy(Gurux.Communication.GXChecksum)">
+            <summary>
+            Creates a copy of the GXChecksum object and its properties.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXChecksum.SyncRoot">
+            <summary>
+            Gets an object that can be used to synchronize the connection.
+            </summary>        
+        </member>
+        <member name="P:Gurux.Communication.GXChecksum.Dirty">
+            <summary>
+            User has change checksum settings.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXChecksum.Position">
+            <summary>
+            Zero indexed position where checksum is inserted.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXChecksum.Type">
+            <summary>
+            Checksum type.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXChecksum.Start">
+            <summary>
+            Zero indexed starting point of position, where checksum count is started.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXChecksum.Count">
+            <summary>
+            Determines, how many bytes are counted for checksum. -1 if all data is counted.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXChecksum.Size">
+            <summary>
+            The size of the CRC (Cyclic Redundancy Check) checksum, given in bits.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXChecksum.Polynomial">
+            <summary>
+            The polynom of the CRC (Cyclic Redundancy Check) checksum.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXChecksum.InitialValue">
+            <summary>
+            The initial value of the CRC (Cyclic Redundancy Check) checksum.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXChecksum.FinalXOR">
+            <summary>
+            The integer on which, with the calculated CRC (Cyclic Redundancy Check) checksum, the XOR operation is done, at the end.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXChecksum.ReverseData">
+            <summary>
+            If True, the calculated CRC data is reversed.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXChecksum.Reflection">
+            <summary>
+            If True, bits of the calculated CRC (Cyclic Redundancy Check) checksum, are swapped around its centre.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXChecksum.ReversedChecksum">
+            <summary>
+            If True, the calculated CRC (Cyclic Redundancy Check) checksum is reversed at the end.
+            </summary>
+        </member>
+        <member name="T:Gurux.Communication.GXStatistics">
+            <summary>
+            Contains packet and byte count statistics.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.GXStatistics.Reset">
+            <summary>
+            Resets BytesReceived and BytesSent counters.
+            </summary>		
+        </member>
+        <member name="P:Gurux.Communication.GXStatistics.PacketsSend">
+            <summary>
+            The amount of sent packets.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXStatistics.PacketsReceived">
+            <summary>
+            The amount of received packets.
+            </summary>            
+        </member>
+        <member name="P:Gurux.Communication.GXStatistics.BytesSend">
+            <summary>
+            Returns the amount of sent bytes.
+            </summary>		
+        </member>
+        <member name="P:Gurux.Communication.GXStatistics.BytesReceived">
+            <summary>
+            Returns the amount of received bytes.
+            </summary>
+        </member>
+        <member name="T:Gurux.Communication.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.FailedToSendPacket">
+            <summary>
+              Looks up a localized string similar to FailedToSendPacket.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.ChecksumSizeIsInvalid">
+            <summary>
+              Looks up a localized string similar to Checksum size is invalid..
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.ClientClosesServer">
+            <summary>
+              Looks up a localized string similar to Client closes server..
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.ClientToNotAcceptData">
+            <summary>
+              Looks up a localized string similar to Client to not accept data: .
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.ConnectionNotInitialized">
+            <summary>
+              Looks up a localized string similar to Connection not initialized..
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.CorruptedData">
+            <summary>
+              Looks up a localized string similar to Corrupted data..
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.InvalidBCDFormat">
+            <summary>
+              Looks up a localized string similar to Invalid BCD format: .
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.InvalidDataFormat">
+            <summary>
+              Looks up a localized string similar to Invalid data format..
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.InvalidSender">
+            <summary>
+              Looks up a localized string similar to Invalid Sender..
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.IsOld">
+            <summary>
+              Looks up a localized string similar to  is old..
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.Ms">
+            <summary>
+              Looks up a localized string similar to  ms..
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.PacketIsOldAndSendBroadcast">
+            <summary>
+              Looks up a localized string similar to Packet is old and send broadcast..
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.PacketSByteOrderIsNotSameAsClientS">
+            <summary>
+              Looks up a localized string similar to Packet&apos;s byte order is not same as client&apos;s..
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.PacketSWaitTimeCanTBeZero">
+            <summary>
+              Looks up a localized string similar to Packet&apos;s wait time can&apos;t be Zero..
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.ReceivedPacketIsNotAccepted">
+            <summary>
+              Looks up a localized string similar to Received packet is not accepted..
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.ReplyPacketReceivedIn">
+            <summary>
+              Looks up a localized string similar to Reply packet received in .
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.ServerFailedToAcceptNewClientBopValueIsInvalid">
+            <summary>
+              Looks up a localized string similar to Server failed to accept new client. Bop value is invalid..
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.ServerFailedToAcceptNewClientByteOrdersAreNotSame">
+            <summary>
+              Looks up a localized string similar to Server failed to accept new client. ByteOrders are not same..
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.ServerFailedToAcceptNewClientChecksumSettingsAreNotSame">
+            <summary>
+              Looks up a localized string similar to Server failed to accept new client. ChecksumSettings are not same..
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.ServerFailedToAcceptNewClientEopValueIsInvalid">
+            <summary>
+              Looks up a localized string similar to Server failed to accept new client. Eop value is invalid..
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.ServerFailedToAcceptNewClientMinimumSizeValueIsInvalid">
+            <summary>
+              Looks up a localized string similar to Server failed to accept new client. MinimumSize value is invalid..
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.ServerFailedToAcceptNewClientParseReceivedPacketValueIsInvalid">
+            <summary>
+              Looks up a localized string similar to Server failed to accept new client. ParseReceivedPacket value is invalid..
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.ServerNotCreatedCallAssignMediaFirst">
+            <summary>
+              Looks up a localized string similar to Server not created. Call AssignMedia first..
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.Properties.Resources.UnknownMedia">
+            <summary>
+              Looks up a localized string similar to Unknown media: .
+            </summary>
+        </member>
+        <member name="T:Gurux.Communication.PacketStates">
+            <Summary>
+            Available packet statuses. Note: Packet status describes the status of a
+            sent, or received packet.
+            </Summary>
+        </member>
+        <member name="F:Gurux.Communication.PacketStates.Ok">
+            <Summary>
+             Everything is OK.
+            </Summary>
+        </member>
+        <member name="F:Gurux.Communication.PacketStates.Sent">
+            <summary>
+            Packet is sended
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.PacketStates.Received">
+            <summary>
+            Packet is received.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.PacketStates.Timeout">
+            <summary>
+             GXClient failed to receive a response packet in given time.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.PacketStates.SendFailed">
+            <summary>
+             GXClient failed to send a packet.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.PacketStates.TransactionTimeReset">
+            <summary>
+            Reset transaction time.
+            </summary>
+            <remarks>
+            This state can be used if device sends lots of data in one 
+            packet and time out occures other wice. Data is parsed itself to use this flag.
+            </remarks>
+        </member>
+        <member name="M:Gurux.Communication.CRCCTemplate.BuildTable">
+            <summary>
+            make CRC lookup table used by table algorithms
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.CRCCTemplate.CountCRC(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Normal lookup table algorithm with augmented zero bytes. Only usable with polynom orders of 8, 16, 24 or 32. 
+            </summary>
+            <param name="data"></param>
+            <param name="index"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gurux.Communication.GXServerReceiver.#ctor(Gurux.Communication.GXServer)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="parent"></param>
+        </member>
+        <member name="T:Gurux.Communication.NamespaceDoc">
+            <summary>
+            <p>Join the Gurux Community or follow <a href="https://twitter.com/guruxorg" title="@Gurux">@Gurux</a> for project updates.</p>
+            <p>Gurux.Communication implements communication class that handles data packet send to the device and parses data packets from the device byte stream. Gurux Communication handles packet resend is packet is lost. Gurux communication hides byte stream and allow you to send and receive data packets.</p>
+            <p>For more info check out <a href="http://www.gurux.org/" title="Gurux">Gurux</a>.</p>
+            <p>We are updating documentation on Gurux web page. </p>
+            <p>If you have problems you can ask your questions in Gurux <a href="http://www.gurux.org/forum">Forum</a>.</p>
+            <h1><a name="simple-example" class="anchor" href="#simple-example"><span class="mini-icon mini-icon-link"></span></a>Simple example</h1><p>Before use you must set following settings:</p>
+            <ul>
+            <li>Bop</li>
+            <li>ResendCount</li>
+            <li>WaitTime</li>
+            </ul><p>You can also set following settings:</p>
+            <ul>
+            <li>Eop</li>
+            <li>ChecksumSettings</li>
+            </ul><p>It is also good to listen following events:</p>
+            <ul>
+            <li>OnError</li>
+            <li>OnReceived</li>
+            <li>OnMediaStateChange</li>
+            </ul>
+            <example>
+            <code>
+            GXClient cl = new GXClient();
+            cl.OnReceived += new Gurux.Communication.ReceivedEventHandler(this.OnReceived);
+            cl.OnError += new ErrorEventHandler(this.OnError);
+            cl.OnMediaStateChange += new MediaStateChangeEventHandler(this.OnMediaStateChange);
+            //Select media and set medía settings.
+            IGXMedia media = cl.SelectMedia("Net");
+            media.Properties(this);
+            //Or set media settings.
+            GXNet net = media as GXNet;net.HostName = "localhost";
+            net.Port = 1000;
+            net.Protocol = NetworkType.Tcp;
+            cl.AssignMedia(media);
+            cl.Bop = (byte)1;
+            cl.Eop = (byte)3;
+            //Set check sum if used.
+            cl.ChecksumSettings.Type = Gurux.Communication.ChecksumType.Adler32;
+            cl.ChecksumSettings.Position = -1;
+            cl.ChecksumSettings.Start = 1;
+            cl.ChecksumSettings.Count = -1;
+            cl.ResendCount = 1;
+            cl.WaitTime = 1000;
+            //Open Media
+            cl.Open();
+            </code>
+            </example>
+            You can create GXPacket by your self, but it is better to use client's CreatePacket method. CreatePacket will set all nesessary settings to the packet. Like, Bop, Eop, checksum. Next send packet. If packet is send as syncronous packet's data is removed and replaced by received data if reply is received. After use remember call ReleasePacket.
+            <example>
+            <code>
+            //Append data to the media.
+            GXPacket packet = cl.CreatePacket();
+            packet.AppendData((byte)1);
+            packet.AppendData("Hello World!");
+            packet.AppendData('\r');
+            packet.AppendData('\n');
+            cl.Send(packet, true);
+            //Release packet.
+            cl.ReleasePacket(packet);
+            </code>
+            </example>
+            Close Media after use.
+            <example>
+            <code>
+            cl.CloseMedia();
+            </code>
+            </example>
+            </summary>
+        </member>
+        <member name="T:Gurux.Communication.Common.NamespaceDoc">
+            <inheritdoc cref="T:Gurux.Communication.NamespaceDoc"/>
+        </member>
+        <member name="T:Gurux.Communication.GXClient">
+            <summary>
+            From the point of view of the client software, GXClient is the main component of the
+            Gurux Communication system. A client software can create a media, and change its properties,
+            through the GXClient object. GXClient steps in also, when starting a media, and when 
+            sending and receiving packets. Because there can be multiple instances of the GXClient 
+            component, the term the GXClient object points to the instance, which makes the call.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.GXClient.#ctor">
+            <summary>
+            Create initial sertions after serialize.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.GXClient.Cancel">
+            <summary>
+            Cancels packet sending.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.GXClient.Finalize">
+            <summary>
+            Destructor.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.GXClient.GetAvailableMedias">
+            <summary>
+            Returns string collection of available media types.
+            </summary>
+            <returns>available medias.</returns>
+        </member>
+        <member name="M:Gurux.Communication.GXClient.GetAvailableMedias(System.Boolean)">
+            <summary>
+            Returns string collection of available media types.
+            </summary>
+            <param name="connected">If true, returns only connected medias otherwice returns all medias.</param>
+            <returns>Collection of available medias.</returns>
+            <remarks>
+            Connected parameter is used because there might be that there is example GXSerial dll that can load, but
+            there are no physical serial ports. In this situation serial port is not returned.
+            </remarks>
+        </member>
+        <member name="M:Gurux.Communication.GXClient.AddEventHandler(Gurux.Communication.IGXEventHandler,System.Object)">
+            <summary>
+            Add event handler.
+            </summary>
+            <param name="handler"></param>
+            <param name="clients">Collection of clients that this handler can handle</param>
+        </member>
+        <member name="M:Gurux.Communication.GXClient.RemoveEventHandler(Gurux.Communication.IGXEventHandler)">
+            <summary>
+            Remove event handler.
+            </summary>
+            <param name="handler"></param>
+        </member>
+        <member name="M:Gurux.Communication.GXClient.MediaProperties(System.Windows.Forms.Form)">
+            <summary>
+            Shows and changes the properties of the active media.
+            </summary>
+            <remarks>
+            If media settings are changed, MediaOpen must be called. 
+            The media must be selected, before this method is called.
+            </remarks>
+            <param name="parentWindow">Owner window of the Properties dialog.</param>
+            <seealso cref="M:Gurux.Communication.GXClient.SelectMedia(System.String)">SelectMedia</seealso> 
+            <returns>Returns True if user has accect changes. Otherwice false.</returns>
+        </member>
+        <member name="M:Gurux.Communication.GXClient.Properties(System.Windows.Forms.Form,System.Boolean)">
+            <summary>
+            Shows and changes the properties of the protocol.
+            </summary>
+            <remarks>
+            A media must be selected, before using this method.<br/>
+            Note: If media is open, protocol settings cannot be changed. 
+            </remarks>
+            <param name="showMediaProperties">If True, media properties are shown.</param>
+            <param name="parentWindow">Owner window of the Properties dialog.</param>
+            <seealso cref="M:Gurux.Communication.GXClient.SelectMedia(System.String)">SelectMedia</seealso> 
+            <returns>Returns True if user has accect changes. Otherwice false.</returns>
+        </member>
+        <member name="M:Gurux.Communication.GXClient.SelectMedia(System.String)">
+            <summary>
+            Selects the Media.
+            </summary>
+            <param name="mediaType">Name of selected Media.</param>
+            <example>
+            <code lang="csharp">
+            'Select Network Media
+            media = GXClient1.SelectMedia("Net");
+            'Select Serial Media
+            media = GXClient1.SelectMedia("Serial");
+            </code>
+            </example>
+            <remarks>
+            If the selected Media is not installed, an error is returned. 
+            Note: Media name is not case sensitive.
+            </remarks>
+            <seealso cref="M:Gurux.Communication.GXClient.Properties(System.Windows.Forms.Form,System.Boolean)">Properties</seealso> 
+            <seealso cref="M:Gurux.Communication.GXClient.AssignMedia(Gurux.Common.IGXMedia)">AssignMedia</seealso> 
+            <returns>Returns True if user has accect changes. Otherwice false.</returns>
+        </member>
+        <member name="M:Gurux.Communication.GXClient.AssignMedia(Gurux.Common.IGXMedia)">
+            <summary>
+            Assigns new media, after media settings are changed.
+            </summary>
+            <remarks>
+            The media must be created before calling this method. 
+            See methods EnumMedias and SelectMedia. 
+            Active media is implemented with GetCurrentMedia method.
+            AssignMedia closes the active media and selects a new one. 
+            The protocol settings do not change, when AssignMedia is called. 
+            After AssignMedia is called, the media must be opened with MediaOpen method.
+            The new media is selected with the SelectMedia method.
+            </remarks>
+            <param name="media">New media component.</param>
+            <seealso cref="M:Gurux.Communication.GXClient.SelectMedia(System.String)">SelectMedia</seealso> 
+            <seealso cref="M:Gurux.Communication.GXClient.Properties(System.Windows.Forms.Form,System.Boolean)">Properties</seealso> 
+        </member>
+        <member name="M:Gurux.Communication.GXClient.CloseServer">
+            <summary>
+            Closes the connection to the GXCom. 
+            The used media is not closed, if there is more than one client that uses GXCom. 
+            The media is closed, when the last GXClient closes connection.
+            It is recommended to use Close method, instead of MediaClose. 
+            </summary>
+            <seealso cref="M:Gurux.Communication.GXClient.CloseMedia">CloseMedia</seealso> 
+        </member>
+        <member name="M:Gurux.Communication.GXClient.CloseMedia">
+            <summary>
+            Closes the media and resets to initial media settings.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.GXClient.Open">
+            <summary>
+            Opens the communication.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.GXClient.Send(Gurux.Communication.GXPacket,System.Boolean)">
+            <summary>
+            Sends the packet.
+            </summary>
+            <param name="packet">Data packet to be sent.</param>
+            <param name="synchronous">If True, synchronous sending mode is used. If False, asynchronous mode is used.</param>
+            <remarks>
+            If GXPacket is sent synchronously, GXCom fills the sent packet with information of the received packet, 
+            so data can be used instantly after the Send call. If GXPacket is sent asynchronously, 
+            data is received through Received method.
+            </remarks>        
+            <seealso cref="E:Gurux.Communication.GXClient.OnReceived">OnReceived</seealso>
+        </member>
+        <member name="M:Gurux.Communication.GXClient.CreatePacket">
+            <summary>
+            Creates default packet with client settings.
+            </summary>
+            <returns>New packet with client settings.</returns>        
+        </member>
+        <member name="M:Gurux.Communication.GXClient.ReleasePacket(Gurux.Communication.GXPacket)">
+            <summary>
+            Releases packet so it can be recycled.
+            </summary>
+            <param name="packet">Released packet.</param>
+        </member>
+        <member name="M:Gurux.Communication.GXClient.ReleasePacket(System.Collections.Generic.List{Gurux.Communication.GXPacket})">
+            <summary>
+            Releases packet so it can be recycled.
+            </summary>
+            <param name="packets">Released packets.</param>
+        </member>
+        <member name="M:Gurux.Communication.GXClient.Reset">
+            <summary>
+            Resets sender and receiver buffers.
+            </summary>
+            <remarks>
+            Call this function if the size of the sender or receiver buffer increases too high. 
+            A media must be selected, before using this method. 
+            </remarks>		
+        </member>
+        <member name="M:Gurux.Communication.GXClient.GetSettings(System.Boolean)">
+            <summary>
+            Gets the client settings as an XML string.
+            </summary>
+            <param name="includeMediaData">If True, Media settings are included, if any settings exist.</param>
+            <returns>Returns client settings, as XML string.</returns>
+        </member>
+        <member name="M:Gurux.Communication.GXClient.SetSettings(System.String)">
+            <summary>
+             Sets client settings as an XML string.
+            </summary>
+            <param name="xmlData">XML data.</param>			
+        </member>
+        <member name="M:Gurux.Communication.GXClient.Clone">
+            <summary>
+            Creates a copy of the client.
+            </summary>
+            <returns>Cloned client.</returns>
+        </member>
+        <member name="M:Gurux.Communication.GXClient.Copy(Gurux.Communication.GXClient)">
+            <summary>
+            Copy client and media settings from the source.
+            </summary>
+            <param name="source">Source where settings are copied.</param>
+        </member>
+        <member name="M:Gurux.Communication.GXClient.GetParallelClients">
+            <summary>
+            Retrieves collection of the other clients, who share the same server.
+            </summary>
+            <returns>Collection of other GXClients, who share the same server.</returns>
+            <remarks>
+            The inquiring client itself is left out of the collection that is returned, 
+            and only the parallel clients are listed.
+            </remarks>
+        </member>
+        <member name="M:Gurux.Communication.GXClient.Dispose">
+            <summary>
+            Close connection to the meter if latest client.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXClient.Statistics">
+            <summary>
+            Contains data and packet statistics.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXClient.Bop">
+            <summary>
+            Gets or sets the BOP (Beginning of the packet), and the BOP type.
+            </summary>
+            <remarks>
+            A media must be selected, before using this method. If BOP is not used, 
+            the type is null. By default variant type of BOP is null.
+            </remarks>
+            <example>
+            <code lang="csharp">
+            GXClient1.Bop = (byte) 3;
+            </code>
+            </example>
+        </member>
+        <member name="P:Gurux.Communication.GXClient.ChecksumSettings">
+            <summary>
+            Checksum parameters.
+            </summary>        
+        </member>
+        <member name="P:Gurux.Communication.GXClient.PacketParser">
+            <summary>
+            TODO: Description
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXClient.Eop">
+            <summary>
+            Gets or sets the EOP (End of the packet).
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXClient.Media">
+            <summary>
+            Returns the active media.
+            </summary>
+            <remarks>
+            Use this method, when current Media properties need to be changed.
+            </remarks>
+            <seealso cref="M:Gurux.Communication.GXClient.SelectMedia(System.String)">SelectMedia</seealso> 
+            <seealso cref="M:Gurux.Communication.GXClient.AssignMedia(Gurux.Common.IGXMedia)">AssignMedia</seealso> 
+        </member>
+        <member name="P:Gurux.Communication.GXClient.Trace">
+            <summary>
+            Trace level of the GXClient.
+            </summary>
+            <remarks>
+            Used in System.Diagnostic.Trace.Writes.
+            </remarks>
+        </member>
+        <member name="P:Gurux.Communication.GXClient.MediaSettings">
+            <summary>
+            Media settings.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXClient.MediaType">
+            <summary>
+            Used Media type
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXClient.ID">
+            <summary>
+            Object Identifier.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXClient.ByteOrder">
+            <summary>
+            Retrieves or sets the byte order.
+            </summary>
+            <remarks>
+            Byte order must be set, before new data is inserted into the packet. 
+            Both GXPacket and GXClient must use the same byte order. 
+            Default byte order is LittleEndian.
+            </remarks>        
+            <seealso cref="P:Gurux.Communication.GXPacket.ByteOrder">GXPacket.ByteOrder</seealso>            
+        </member>
+        <member name="P:Gurux.Communication.GXClient.MediaIsOpen">
+            <summary>
+            Returns True, if the media is currently open. 
+            </summary>
+            <remarks>
+            A media must be selected, before using this method. 
+            </remarks>
+        </member>
+        <member name="P:Gurux.Communication.GXClient.ResendCount">
+            <summary>
+            Retrieves or sets the resend count of the packet.
+            </summary>
+            <remarks>
+            ResendCount indicates how many times GXCom tries to resend the packet.
+            GXPacket and GXClient have separate resend count properties. For more
+            information about resend count properties see GXPacket ResendCount.
+            By default, the GXClient ResendCount is used.
+            If the resend count is -3, the transfer protocol (for example TCP/IP) determines the count.
+            If ResendCount of the packet is -2, GXClient ResendCount is used. 
+            If it is -1, data is sent, but no reply is expected. 
+            If it is 0, data is sent and reply is expected, but packet is not resent, even if there is no answer.
+            If value is more than 0, it determines how many times packet is tried to resend.
+            </remarks>
+            <seealso cref="P:Gurux.Communication.GXPacket.ResendCount">GXPacket.ResendCount</seealso> 
+            <seealso cref="P:Gurux.Communication.GXClient.WaitTime">WaitTime</seealso>		
+        </member>
+        <member name="P:Gurux.Communication.GXClient.WaitTime">
+            <summary>
+            Retrieves or sets the waiting time of the packet.
+            </summary>
+            <remarks>
+            WaitTime indicates, for how long GXCom waits for the reply packet, before trying to 
+            resend the packet. The value is given in milliseconds. By default, the WaitTime of GXClient 
+            is used.
+            If the wait time is -3, the transfer protocol (for example TCP/IP) determines the time.
+            To use WaitTime of GXClient, set WaitTime of the GXPacket to -2. 
+            If set to -1, waiting time is infinite.  
+            </remarks>
+            <seealso cref="P:Gurux.Communication.GXClient.ResendCount">ResendCount</seealso> 
+            <seealso cref="P:Gurux.Communication.GXPacket.WaitTime">GXPacket.WaitTime</seealso>
+        </member>
+        <member name="P:Gurux.Communication.GXClient.ParseReceivedPacket">
+            <summary>
+            Retrieves or sets a Boolean to indicate, if the application parses the received packets.
+            </summary>
+            <remarks>
+            Set this value to True, if the client application handles the parsing. By default, the value 
+            is False, meaning that the parsing is done by GXCom. 
+            A media must be selected, before using this method.
+            </remarks>
+            <seealso cref="M:Gurux.Communication.GXPacket.ParsePacket(System.Byte[],System.Int32@,System.Int32@)">GXPacket.ParsePacket</seealso>
+        </member>
+        <member name="P:Gurux.Communication.GXClient.Dirty">
+            <summary>
+            Retrieves or sets, whether the media has been modified, since the last time it was saved.
+            </summary>	
+            <returns>
+            True if the media has been modified, since it was last saved. 
+            False, if not modified since last saving.
+            </returns>
+        </member>
+        <member name="P:Gurux.Communication.GXClient.SyncRoot">
+            <summary>
+            Gets an object that can be used to synchronize the connection.
+            </summary>        
+        </member>
+        <member name="P:Gurux.Communication.GXClient.SyncCommunication">
+            <summary>
+            Gets an object that can be used to synchronize the communication with the Media.
+            </summary>        
+        </member>
+        <member name="P:Gurux.Communication.GXClient.Owner">
+            <summary>
+            The owner of the GXClient. Usually a GXDevice.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXClient.MinimumSize">
+            <summary>
+            Minimum size of the data packet.
+            </summary>
+        </member>
+        <member name="E:Gurux.Communication.GXClient.System#ComponentModel#INotifyPropertyChanged#PropertyChanged">
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+        </member>
+        <member name="E:Gurux.Communication.GXClient.OnTrace">
+            <inheritdoc cref="T:Gurux.Common.TraceEventHandler"/>
+        </member>
+        <member name="E:Gurux.Communication.GXClient.OnError">
+            <summary>
+            Represents the method that will handle the error event of a Gurux component.
+            </summary>
+        </member>
+        <member name="E:Gurux.Communication.GXClient.OnMediaStateChange">
+            <summary>
+            Media component sends notification, when its state changes.
+            </summary>
+        </member>
+        <member name="E:Gurux.Communication.GXClient.OnCountChecksum">
+            <summary>
+            GXPacket component calls this method when the checksum is counted.
+            </summary>
+            <remarks>
+            If own checksum count is used, the SetChecksumParameters ChkType public must be set to Own. 
+            If checksum type is something different than Own, this method is not called.<br/>
+            This event is called first time with empty data to resolve the size of used crc.
+            </remarks>
+        </member>
+        <member name="E:Gurux.Communication.GXClient.OnVerifyPacket">
+            <summary>
+            Check that received packet is OK.
+            </summary>
+        </member>
+        <member name="E:Gurux.Communication.GXClient.OnIsReplyPacket">
+            <summary>
+            GXClient component calls this method when it checks if the received packet is a reply packet for the send packet.
+            </summary>
+            <remarks>
+            GXClient calls this method when it receives a new packet. This method checks
+            if the received packet is the response to the sent packet. The response depends on the used protocol.
+            GXClient goes through all sent packets one by one until isReplyPacket is set to True.
+            If this method is not implemented GXCom assumes that received packet is a reply packet for the first sent packet.
+            </remarks>
+        </member>
+        <member name="E:Gurux.Communication.GXClient.OnAcceptNotify">
+            <summary>
+            GXClient component uses this method to check if received notify message is accepted.
+            </summary>
+            <remarks>
+            When event message is received this method is used to check is received packet accepted.
+            </remarks>
+        </member>
+        <member name="E:Gurux.Communication.GXClient.OnReceived">
+            <summary>
+            GXClient component sends all asynchronous and notification packets using this method.
+            </summary>
+            <remarks>
+            This method handles the received asynchronous and notification packets.
+            If all communication is done using synchronous communication, this method is not necessary to implement.
+            </remarks>  
+        </member>
+        <member name="E:Gurux.Communication.GXClient.OnParsePacketFromData">
+            <summary>
+            GXClient component calls this method, if the client application uses its own parsing method, instead of the one of GXCom.
+            </summary>
+            <remarks>
+            This method is called only, if ParseReceivedPacket is set True.
+            </remarks>    
+        </member>
+        <member name="E:Gurux.Communication.GXClient.OnReceiveData">
+            <summary>
+            Checks if the received data is from the correct device. 
+            If ReceiveData is set to False, received data is ignored.
+            </summary>
+            <remarks>
+            Use this method to identify the correct data. 
+            </remarks>   
+        </member>
+        <member name="E:Gurux.Communication.GXClient.OnBeforeSend">
+            <summary>
+            Called before packet is sent.
+            </summary>
+        </member>
+        <member name="E:Gurux.Communication.GXClient.OnLoad">
+            <summary>
+             Initialize client settings.
+            </summary>
+        </member>
+        <member name="E:Gurux.Communication.GXClient.OnUnload">
+            <summary>
+            Make client cleanup
+            </summary>
+        </member>
+        <member name="T:Gurux.Communication.GXClient.GXProxyClass">
+            <summary>
+            Load medias to own namespace.
+            </summary>
+        </member>
+        <member name="T:Gurux.Communication.IGXPacketParser">
+            <summary>
+            This interface implements GXClient handler interface.
+            </summary>    
+        </member>
+        <member name="M:Gurux.Communication.IGXPacketParser.Load(System.Object)">
+            <summary>
+             Initialize settings.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.IGXPacketParser.Connect(System.Object)">
+            <summary>
+             Connect to the meter.
+            </summary>
+            <remarks>
+            Initialize all packet parset settings here.
+            </remarks>
+        </member>
+        <member name="M:Gurux.Communication.IGXPacketParser.Disconnect(System.Object)">
+            <summary>
+             Disconnect from the meter.
+            </summary>
+            <remarks>
+            Make cleanup here.
+            </remarks>
+        </member>
+        <member name="M:Gurux.Communication.IGXPacketParser.BeforeSend(System.Object,Gurux.Communication.GXPacket)">
+            <summary>
+             Called before new packet is send to device.
+             If this is not want to read return false.
+             In this function you can add extra data to the packet if needed.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.IGXPacketParser.IsReplyPacket(System.Object,Gurux.Communication.GXReplyPacketEventArgs)">
+            <summary>
+             Set GXReplyPacketEventArgs to true if packet is a reply packet.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.IGXPacketParser.AcceptNotify(System.Object,Gurux.Communication.GXReplyPacketEventArgs)">
+            <summary>
+             Is device send acceptable reply packet.			
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.IGXPacketParser.CountChecksum(System.Object,Gurux.Communication.GXChecksumEventArgs)">
+            <summary>
+             Count checksum for the packet.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.IGXPacketParser.ReceiveData(System.Object,Gurux.Communication.GXReceiveDataEventArgs)">
+            <summary>
+            Initial validation of received data before parsing.
+            </summary>
+            <remarks>Good place to remove received keepalive messages from data stream.</remarks>
+        </member>
+        <member name="M:Gurux.Communication.IGXPacketParser.VerifyPacket(System.Object,Gurux.Communication.GXVerifyPacketEventArgs)">
+            <summary>
+            Verifies received packet.
+            </summary>
+            <returns>Returns true if packet is OK.</returns>
+            <remarks>
+            This method is used to test data when automated data parsing is used.
+            Sometimes checksum can match even packet is not compleate. in that case rerurn false and data is try to read again.
+            </remarks>
+        </member>
+        <member name="M:Gurux.Communication.IGXPacketParser.Received(System.Object,Gurux.Communication.GXReceivedPacketEventArgs)">
+            <summary>
+             New packet received.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.IGXPacketParser.ParsePacketFromData(System.Object,Gurux.Communication.GXParsePacketEventArgs)">
+            <summary>
+             Parse new packet from received data. 
+            </summary>
+            <remarks>
+             This method is used only if ParseReceivedPacket is set True in GXScript_Load -function.
+             Return value indigates how many bytes parsed packet is.
+            </remarks>
+        </member>
+        <member name="M:Gurux.Communication.IGXPacketParser.Unload(System.Object)">
+            <summary>
+             Make cleanup
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.IGXPacketParser.InitializeMedia(System.Object,Gurux.Common.IGXMedia)">
+            <summary>
+            Initialize default settings for the media.
+            </summary>
+            <remarks>
+            This is called when new device is created.
+            </remarks>        
+        </member>
+        <member name="T:Gurux.Communication.Common.GXConverter">
+            <summary>
+            Contains various conversion methods.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.Common.GXConverter.GetBytes(System.Object,System.Boolean)">
+            <summary>
+            Convert value to byte array.
+            </summary>
+            <param name="value">Value to convert.</param>
+            <param name="swap">Is byte order changed.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gurux.Communication.Common.GXConverter.FromBCD(System.Byte[])">
+            <summary>
+            Converts BCD (Binary Coded Desimal) to string.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gurux.Communication.Common.GXConverter.ToBCD(System.String)">
+            <summary>
+            Converts string to BCD (Binary Coded Desimal).
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gurux.Communication.Common.GXConverter.ToHex(System.Object)">
+            <summary>
+            Converts value to hex string.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gurux.Communication.Common.GXConverter.FromHex(System.String,System.Type)">
+            <summary>
+            Converts Hex string to byte array.
+            </summary>
+            <param name="value"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Gurux.Communication.ChecksumType">
+            <summary>
+            Available checksum types.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ChecksumType.None">
+            <summary>
+            Checksum is not computed.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ChecksumType.Own">
+            <summary>
+            Client application provides its own checksums.
+            </summary>
+            <remarks>
+            CountChecksum method is called.
+            </remarks>
+        </member>
+        <member name="F:Gurux.Communication.ChecksumType.Crc16">
+            <summary>
+            16-bit algorithm is used to compute the checksum.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ChecksumType.Crc16Reverced">
+            <summary>
+            Reversed 16-bit algorithm is used to compute the checksum.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ChecksumType.Crc32">
+            <summary>
+            32-bit algorithm is used to compute the checksum.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ChecksumType.Fletcher">
+            <summary>
+            Fletchers 16-bit algorithm is used to compute the checksum.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ChecksumType.Adler32">
+            <summary>
+            Adlers 32-bit algorithm is used to compute the checksum.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ChecksumType.Ccitt16">
+            <summary>
+            Expressed as X^16+X^12+X^5+X^0. USed in X.25. Polynomial is 0x1021 and seed is 0xFFFF. 
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ChecksumType.Ibm16">
+            <summary>
+            Used in modbus. Expressed as X^16+X^15+X^2+X^0.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ChecksumType.Ccitt16Reverced">
+            <summary>
+            Used in XMODEM, Kermit. Expressed as X^16 + X^15 + X^10 + X^3 Polynomial is 
+            0x8408 and seed is 0x0.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ChecksumType.Zmodem">
+            <summary>
+            Used in ZMODEM. Polynomial is 0x1021 and seed is 0x0.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ChecksumType.Crc16Arc">
+            <summary>
+            Used in ARC, LHA and BISYNCH. Polynomial is 0x8005 and seed is 0x0.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ChecksumType.Crc24">
+            <summary>
+            Polynomial is 0x1864CFB and seed is 0xB704CE.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ChecksumType.Crc32Reverced">
+            <summary>
+            Reversed 32 bit byteorder is used.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ChecksumType.Crc8">
+            <summary>
+            8 bit CRC. Expressed as X^8+X^5+X^4+X^3+X^0.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ChecksumType.Crc8Reverced">
+            <summary>
+            CCITT-8 Polynomial. Expressed As: X^8 + X^5 + X^4 + 1. Used in ATM and HEC.         
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ChecksumType.Crc8Xor">
+            <summary>
+            8 Bit Bitwise XOR. Seed is 0.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ChecksumType.Sum16Bit">
+            <summary>
+            Adds up the bytes, called also a longitudinal redundancy check (LRC).
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ChecksumType.Sum32Bit">
+            <summary>
+            Adds up the bytes.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ChecksumType.Fcs16">
+            <summary>
+            Count CRC for the FCS16. Expressed as x^16 + x^12 + x^5 + x^0. 
+            Polynomial is 0x1021 and seed is 0xFFFF. FinalXOR is 0xFFFF data is 
+            reversed and reflection is used.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ChecksumType.Custom">
+            <summary>
+            Custom checksum is used.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ChecksumType.Sum8Bit">
+            <summary>
+            Adds up the bytes.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ChecksumType.CrcAbbAlpha">
+            <summary>
+            ABB Alpha's checksum.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.GXServerSender.#ctor(Gurux.Communication.GXServer)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="parent"></param>
+        </member>
+        <member name="M:Gurux.Communication.GXServerSender.IsTransactionTimeReset(Gurux.Communication.GXPacket)">
+            <summary>
+            User has reset transaction time so packet is not going old.
+            </summary>
+            <param name="packet"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gurux.Communication.GXServerSender.GetWaitTime(System.Int32@)">
+            <summary>
+            How long we wait before trying to send the packet again. 
+            If the buffer is empty we wait until a new item is added. 
+            If there are items in the buffer wait until first timeout occures.
+            </summary>
+            <param name="wt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gurux.Communication.GXServerSender.Run">
+            <summary>
+            This thread sends packet's data to the media.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.GXServer.AddEventHandler(Gurux.Communication.IGXEventHandler,System.Object)">
+            <summary>
+            Add event handler.
+            </summary>
+            <param name="handler"></param>
+        </member>
+        <member name="M:Gurux.Communication.GXServer.RemoveEventHandler(Gurux.Communication.IGXEventHandler)">
+            <summary>
+            Remove event handler.
+            </summary>
+            <param name="handler"></param>
+        </member>
+        <member name="M:Gurux.Communication.GXServer.Instance(Gurux.Common.IGXMedia,Gurux.Communication.GXClient)">
+            <summary>
+            GXServer class factory.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.GXServer.Cancel">
+            <summary>
+            Cancel all packets.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.GXServer.Release(Gurux.Communication.GXServer,Gurux.Communication.GXClient)">
+            <summary>
+            Remove client from the server.
+            </summary>
+            <param name="server"></param>
+            <param name="client"></param>
+        </member>
+        <member name="T:Gurux.Communication.PacketParts">
+            <summary>    
+            Bitmask defining parts of the packet.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.PacketParts.Data">
+            <summary>
+            The data part of the packet.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.PacketParts.Markers">
+            <summary>
+            BOP, EOP and checksum parts of the packet.
+            </summary>
+        </member>
+        <member name="T:Gurux.Communication.IGXEventHandler">
+            <summary>
+            Interface that handles received events.
+            </summary>
+            <remarks>
+            There is only one instance of event handler.
+            </remarks>
+        </member>
+        <member name="M:Gurux.Communication.IGXEventHandler.ClientConnected(System.String)">
+            <summary>
+            New media is connected.
+            </summary>
+            <param name="ConnectionInfo"></param>
+        </member>
+        <member name="M:Gurux.Communication.IGXEventHandler.ClientDisconnected(System.String)">
+            <summary>
+            Media is disconnected.
+            </summary>
+            <param name="ConnectionInfo"></param>
+        </member>
+        <member name="M:Gurux.Communication.IGXEventHandler.NorifyEvent(Gurux.Communication.GXNotifyEventArgs)">
+            <summary>
+            Find device when event data is received from the meter.
+            </summary>
+            <param name="e"></param>
+            <returns>Return false if data i </returns>
+        </member>
+        <member name="P:Gurux.Communication.IGXEventHandler.Clients">
+            <summary>
+            Collection of clients.
+            </summary>
+        </member>
+        <member name="T:Gurux.Communication.GXPacket">
+            <summary>
+            GXPacket component includes a header, and a data field, of a data packet used in
+            communication. It also includes the methods for modifying those fields. In addition, 
+            every packet can be set to have unique settings. For example, a certain single packet 
+            can be set to wait a shorter time in sending, than other packets sent by the system. 
+            Also, for example, the resend count can vary from packet to another.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.GXPacket.#ctor">
+            <summary>
+            Packet is created using GXClient's CreatePacket -method.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.GXPacket.Copy(Gurux.Communication.GXPacket)">
+            <summary>
+            Create a copy of the GXPacket.
+            </summary>
+        </member>
+        <member name="M:Gurux.Communication.GXPacket.AppendData(System.Object)">
+            <summary>
+            Appends new data to the data part of the packet.
+            </summary>
+            <param name="data">Data to be inserted.</param>
+            <remarks>
+            DataType parameter determines the format, in which the data is appended.
+            If the data is given in a hexadecimal string, every byte is separated with a space.
+            Error is returned, if appended data is empty, or in an unknown form. 
+            </remarks>
+            <example>
+            <code lang="vbscript">
+            'Append data as number which takes one byte.
+            GXPacket1.Append "10", GX_VT_BYTE
+            'Append data as string which takes two bytes. (One byte for each char)
+            GXPacket1.Append "10", GX_VT_STR
+            'Append data as hex string which takes two bytes.
+            GXPacket1.Append "10 00", GX_VT_HEX_STR
+            </code>
+            </example>
+            <seealso href="VarType">VariantType (GX_VARTYPE)</seealso>
+            <seealso href="GXPacketToString">ToString</seealso>
+            <seealso href="GXPacketExtractData">ExtractData</seealso>
+            <seealso href="GXPacketInsertData">InsertData</seealso>
+            <seealso href="GXPacketResetData">ResetData</seealso>
+        </member>
+        <member name="M:Gurux.Communication.GXPacket.CountChecksum(System.Int32,System.Int32)">
+            <summary>
+            Computes the checksum for the contents of the packet.
+            </summary>
+            <remarks>
+            The checksum is computed from the data of the GXPacket object. This method should not be called directly. 
+            GXClient calls this method automatically, when checksum is computed.
+            </remarks>
+            <param name="start">Position where to start counting CRC.</param>
+            <param name="count">How many bytes are counted. If all, set to -1.</param>
+            <returns>Counted checksum.</returns>       
+        </member>
+        <member name="M:Gurux.Communication.GXPacket.ShouldSwap">
+            <summary>
+            Swap bytes if different byte order is used.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Gurux.Communication.GXPacket.ExtractData(System.Type,System.Int32,System.Int32)">
+            <summary>
+            Extracts the data of the packet into an object.
+            </summary>
+            <param name="type">Type of exported data.</param>
+            <param name="index">Zero based index, in the data part, where exporting is started.</param>
+            <param name="count">Determines how many items are exported. Value -1 indicates that all items are copied.</param>
+            <remarks>
+            Use this method to export the data part of the packet. 
+            If the data is given in a hexadecimal string every byte is separated with a space.
+            </remarks>
+            <returns>
+            Returns an error, if there is not enough data in the data part.
+            </returns>
+            <example>
+            <code lang="vbscript">
+            'Extract three bytes as byte array.
+            GXPacket1.ExtractData data, GX_VT_BYTE, 0, 3
+            
+            'Extract all data as hex string. Starting from position 1.
+            GXPacket1.ExtractData data, GX_VT_HEX_STR, 1, -1
+            </code>
+            </example>
+            <seealso href="GXPacketExtractHeader">ExtractHeader</seealso>
+            <seealso href="GXPacketExtractPacket">ExtractPacket</seealso>
+            <returns>Object as given type from the byte array.</returns>
+        </member>
+        <member name="M:Gurux.Communication.GXPacket.ExtractPacket">
+            <summary>
+            Extracts the whole packet as a byte array. 
+            </summary>
+            <remarks>
+            This method returns data that is send to the device.
+            </remarks>
+        </member>
+        <member name="M:Gurux.Communication.GXPacket.ToString">
+            <summary>
+            Dumps the packet to a hex string.
+            </summary>
+            <remarks>
+            String consists of BOP, header, data, EOP and checksum. 
+            Use this method to see what packet looks like in hex string format.
+            </remarks>
+            <returns>Extracted packet.</returns>
+        </member>
+        <member name="M:Gurux.Communication.GXPacket.InsertData(System.Object,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Inserts new data into the packets data part.
+            </summary>
+            <returns> Returns an error, if data is empty, or in an unknown form.</returns>   
+            <remarks>
+            If the data is given in a hexadecimal string, every byte is separated with a space.
+            </remarks>
+            <example>
+            <code lang="vbscript">
+            'Add new data to data part.
+            GXPacket1.InsertData "01 02 03 04", GX_VT_HEX_STR, 0
+            </code>
+            </example>
+            <param name="data">Inserted data.</param>        
+            <param name="position">Position in bytes, in the packet data, where data is inserted.</param>
+            <param name="startIndex">Index from where the data is added.</param>
+            <param name="count">How many bytes are added. Set to Zero if all data is added.</param>
+            <seealso href="GXPacketAppendData">AppendData</seealso>
+            <seealso href="GXPacketExtractData">ExtractData</seealso>
+            <seealso href="GXPacketResetData">ResetData</seealso>
+        </member>
+        <member name="M:Gurux.Communication.GXPacket.RemoveData(System.Int32,System.Int32)">
+            <summary>
+            Removes bytes from the data part of the packet.
+            </summary>
+            <param name="pos">Position of the first byte to remove.</param>
+            <param name="count">Number of bytes to remove.</param>
+            <seealso href="GXPacketInsertData">InsertData</seealso>
+            <seealso href="GXPacketResetData">ResetData</seealso>
+        </member>
+        <member name="M:Gurux.Communication.GXPacket.ClearData">
+            <summary>
+            Clears the data of the packet.
+            </summary>
+            <remarks>
+            The data contents of the packet is released, and data size is set to zero.
+            </remarks>
+            <seealso href="GXPacketResetHeader">ResetHeader</seealso>
+            <seealso href="GXPacketResetPacket">ResetPacket</seealso>
+        </member>
+        <member name="M:Gurux.Communication.GXPacket.Clear">
+            <summary>
+            Resets the packet component.
+            </summary>
+            <remarks>
+            Clears packet data, and sets all member variables to default values.
+            </remarks>
+            <seealso href="GXPacketResetHeader">ResetHeader</seealso>
+            <seealso href="GXPacketResetData">ResetData</seealso>
+        </member>
+        <member name="M:Gurux.Communication.GXPacket.ParsePacket(System.Byte[],System.Int32@,System.Int32@)">
+            <summary>
+            This method is used to parse packet from given data.
+            </summary>
+            <param name="data">The data, from which the packet is parsed.</param>
+            <param name="start">Zero based index of the starting point of packet, in the given data.</param>   	
+            <param name="size">Size of the parsed packet, in bytes.</param>
+            <returns>Parse succeeded.</returns>
+        </member>
+        <member name="M:Gurux.Communication.GXPacket.GetSize(Gurux.Communication.PacketParts)">
+            <summary>
+            Retrieves the size of the selected packet parts.
+            </summary>
+            <seealso href="GXPacketInsertHeader">InsertHeader</seealso>
+            <seealso href="GXPacketInsertData">InsertData</seealso>
+            <seealso href="GXPacketResetHeader">ResetHeader</seealso>
+            <seealso href="GXPacketResetData">ResetData</seealso>
+        </member>
+        <member name="P:Gurux.Communication.GXPacket.SyncRoot">
+            <summary>
+            Gets an object that can be used to synchronize the connection.
+            </summary>        
+        </member>
+        <member name="P:Gurux.Communication.GXPacket.Bop">
+            <summary>
+            Gets the BOP (Beginning of the packet), and the BOP type.
+            </summary>
+            <remarks>
+            By default the BOP type is null, which means that the BOP is not used.<br/>
+            Other supported BOP types are an 8-bit unsigned integer, a 16-bit signed integer and a 32-bit signed integer.
+            </remarks>		
+        </member>
+        <member name="P:Gurux.Communication.GXPacket.Eop">
+            <summary>
+            Gets the EOP (End of the packet), and the EOP type.
+            </summary>
+            <remarks>
+            By default the EOP type is null, which means that the EOP is not used.<br/>
+            Other supported EOP types are an 8-bit unsigned integer, a 16-bit signed integer and a 32-bit signed integer.
+            </remarks>
+        </member>
+        <member name="P:Gurux.Communication.GXPacket.Checksum">
+            <summary>
+            Counted checksum.
+            </summary>
+            <seealso href="GXPacketGetChecksum">GetChecksum</seealso>
+        </member>
+        <member name="P:Gurux.Communication.GXPacket.MinimumSize">
+            <summary>
+            Minimum size of the data packet.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXPacket.SendTime">
+            <summary>
+            When packet is send for a first time.
+            </summary>
+            <remarks>
+            GXServer uses this information when it try to send packet again.
+            </remarks>
+        </member>
+        <member name="P:Gurux.Communication.GXPacket.SendCount">
+            <summary>
+            How many times packet is send to the device.
+            </summary>
+            <remarks>
+            GXServer uses this information when it try to send packet again.
+            </remarks>
+        </member>
+        <member name="P:Gurux.Communication.GXPacket.Id">
+            <summary>
+            Object Identifier.
+            </summary>
+        </member>
+        <member name="P:Gurux.Communication.GXPacket.ByteOrder">
+            <summary>
+            Retrieves or sets the used byte order.
+            </summary>
+            <remarks>
+            Byte order must be set before new data is inserted into the packet. 
+            Both GXPacket and GXClient must use the same byte order. 
+            Default byte order is LittleEndian.
+            </remarks>
+            <seealso cref="P:Gurux.Communication.GXClient.ByteOrder">GXClient.ByteOrder</seealso>
+        </member>
+        <member name="P:Gurux.Communication.GXPacket.ReplyDelay">
+            <summary>
+            Retrieves the delivery time of the packet.
+            </summary>
+            <remarks>
+            ReplyDelay is used to check how much time it takes for GXCom to send the packet 
+            and get reply from the device. 
+            This value is used for development purposes. Do not try to set this value. 
+            GXClient resets this value every time, when a new packet is sent.
+            </remarks>
+        </member>
+        <member name="P:Gurux.Communication.GXPacket.ResendCount">
+            <summary>
+            Retrieves or sets the resend count of the packet.
+            </summary>
+            <remarks>
+            ResendCount indicates how many times GXCom has tried to resend the packet.
+            GXPacket and GXClient have separate resend count properties. For more
+            information about resend count properties see GXClient ResendCount.
+            By default GXClient ResendCount is used.
+            If the resend count is -3, the transfer protocol (for example TCP/IP) determines the count.
+            If ResendCount of the Packet is -2, GXClient ResendCount is used. 
+            If it is -1, data is sent, but no reply is expected. 
+            If it is 0, data is sent and reply is expected, but packet is not resent if there is no answer.
+            If value is more than 0, it determines how many times packet is tried to resend.
+            </remarks>
+            <seealso href="ResendCount">GXClient.ResendCount</seealso> 
+            <seealso href="GXPacket.WaitTime">GXPacket.WaitTime</seealso>
+        </member>
+        <member name="P:Gurux.Communication.GXPacket.SenderInfo">
+            <summary>
+            Retrieves or sets the sender information of the packet. 
+            </summary>
+            <remarks>
+            This value depends on the used media.
+            <list type="bullet">
+            <item><description>In DialUp, the form is "IP Address:Port #" (127.0.0.1:134).</description></item>
+            <item><description>In GPRS media, the form is "IP Address:Port #" (127.0.0.1:134).</description></item>
+            <item><description>In Network media, the form is "IP Address:Port #" (127.0.0.1:134).</description></item>
+            <item><description>In Serial media, the used serial port is saved here.</description></item>
+            <item><description>In SMS media, the phone number of the sender is saved here.</description></item>
+            <item><description>In SNMP, the form is "IP Address:Port #" (127.0.0.1:134).</description></item>
+            <item><description>In Terminal media, this public is not used.</description></item>
+            </list>
+            </remarks>
+        </member>
+        <member name="P:Gurux.Communication.GXPacket.Status">
+            <summary>
+            Retrieves or sets the status of the packet.
+            </summary>
+            <remarks>
+            By default the status of the packet is Ok (GX_STATE_OK). The status of the packet is reset every time GXClient sends the packet.
+            </remarks>
+        </member>
+        <member name="P:Gurux.Communication.GXPacket.WaitTime">
+            <summary>
+            Retrieves or sets waiting time of the packet.
+            </summary>
+            <remarks>
+            WaitTime indicates for how int GXCom waits for the reply packet before trying to resend the packet. 
+            The value is given in milliseconds. By default, the WaitTime of GXClient is used.
+            If the wait time is -3, the transfer protocol (for example TCP/IP) determines the time.
+            To use WaitTime of GXClient, set WaitTime of the GXPacket to -2. 
+            If set to -1, waiting time is infinite.  
+            </remarks>
+            <seealso href="GXPacketResendCount">ResendCount</seealso> 
+            <seealso href="GXClient.WaitTime">GXClient.WaitTime</seealso>           
+        </member>
+        <member name="P:Gurux.Communication.GXPacket.ChecksumSettings">
+            <summary>
+            Checksum parameters.
+            </summary>
+        </member>
+        <member name="E:Gurux.Communication.GXPacket.OnCountChecksum">
+            <summary>
+            GXPacket component calls this method when the checksum is counted.
+            </summary>
+        </member>
+        <member name="T:Gurux.Communication.ByteOrder">
+            <summary>
+            User byte orders.
+            </summary>
+        </member>
+        <member name="F:Gurux.Communication.ByteOrder.LittleEndian">
+            <summary>
+            Little-Endian Byte Order (Intel Byte Order).
+            </summary>
+            <remarks>        
+            The most significant byte is on the right end of the word.
+            </remarks>
+        </member>
+        <member name="F:Gurux.Communication.ByteOrder.BigEndian">
+            <summary>
+            Big-Endian Byte Order (Motorola Byte Order).
+            </summary>
+            <remarks>
+            The most significant byte is on the left end of the word.
+            </remarks>
+        </member>
+    </members>
+</doc>

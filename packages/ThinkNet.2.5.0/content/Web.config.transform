@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<configuration>
+  <configSections>
+    <section name="thinkdb-configuration" type="ThinkNet.Database.Common.DatabaseSectionHandler, ThinkNet"/>
+    <section name="thinkcache-configuration" type="ThinkNet.Cache.WebCacheSectionHandler, ThinkNet" />
+  </configSections>
+
+  <thinkdb-configuration>
+    <database-factory>
+      <!--数据库驱动-->
+      <!--<property name="database.provider_class">ThinkNet.Database.Common.SqlServerDatabase, ThinkNet</property>-->
+      <!--数据上下文类型 [web,wcf,call,thread]或者实现ThinkNet.Infrastructure.ICurrentContext接口-->
+      <property name="database.context_class">web</property>
+      <!--数据库连接字符串-->
+      <!--<property name="connection.connection_string"></property>-->
+      <!--数据库连接Key-->
+      <property name="connection.connection_string_name">default</property>
+    </database-factory>
+  </thinkdb-configuration>
+
+  <thinkcache-configuration>
+    <cache region="ThinkCache" expiration="5" priority="normal" />
+  </thinkcache-configuration>
+
+
+  <appSettings>
+    <!-- "OFF", "DEBUG", "INFO", "WARN", "ERROR", "FATAL" -->
+    <add key="thinknet.logging_level" value="ERROR" />
+    <!-- "ALL", "FILE", "CONSOLE" -->
+    <add key="thinknet.logging_type" value="ALL" />
+    <!-- 如果不使用thinkdb-configuration配置节点，可以直接在这里设置数据连接字符串或connectionString的名称 -->
+    <!--<add key="thinknet.database_connection_nameorstring" value="name=default" />-->
+    <!-- 参考 database.context_class 配置说明 -->
+    <!--<add key="thinknet.database_context_type" value="web" />-->
+  </appSettings>
+</configuration>
